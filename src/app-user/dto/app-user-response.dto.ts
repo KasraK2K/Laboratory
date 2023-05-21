@@ -9,8 +9,12 @@ export class AppUserResponseDto {
   email: string
   contact_number: string
   permission: number
+
+  @Exclude()
   otp: string
+  @Exclude()
   otp_time: Date
+
   created_at: Date
   updated_at: Date
   archive_at: Date
