@@ -6,6 +6,8 @@ import { MysqlDatabaseType } from './common/interfaces/general.interface'
 import { AppUserModule } from './app-user/app-user.module'
 import { AuthModule } from './auth/auth.module'
 import { PortalUserModule } from './portal-user/portal-user.module'
+import { APP_INTERCEPTOR } from '@nestjs/core'
+import { ResponseInterceptor } from './common/interceptors/response.interceptor'
 
 @Module({
   imports: [
@@ -31,6 +33,12 @@ import { PortalUserModule } from './portal-user/portal-user.module'
     AppUserModule,
     AuthModule,
     PortalUserModule
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseInterceptor
+    }
   ]
 })
 export class AppModule {
